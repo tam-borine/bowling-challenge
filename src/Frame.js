@@ -13,7 +13,9 @@ Frame.prototype = {
   roll: function(roll){
     this._rollsRemaining --;
     var roll = roll || new Roll();
-    return roll.outcome();
+    var points = roll.outcome();
+    this._points += points;
+    return points
   },
 
 

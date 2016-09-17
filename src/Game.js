@@ -14,7 +14,7 @@ Game.prototype = {
 },
 
   updateScore: function(){
-
+    this._score += frame._points();
   }
 
 }

@@ -9,8 +9,11 @@ describe('Frame', function(){
     roll = new Roll();
   })
 
-  it('should have a roll method that returns a number of pins hit', function(){
-    expect(frame.roll(roll)).toEqual(jasmine.any(Number));
+  it('roll method updates points by pins hit', function(){
+    spyOn(roll, "outcome").and.callThrough()
+    var points = frame.roll(roll);
+    expect(roll.outcome).toHaveBeenCalled();
+    expect(frame._points).toEqual(points);
   })
 
 
