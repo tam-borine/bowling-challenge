@@ -17,6 +17,14 @@ describe('Roll', function(){
     expect(roll.pins).toEqual(10);
     roll.outcome();
     expect(roll.pins).toBeLessThan(10);
-});
+  });
+
+  it('is a strike if all ten pins are hit', function() {
+    spyOn(roll, "getRandomArbitrary").and.callThrough().and.returnValue(10);
+    roll.outcome();
+
+    expect(roll.isAStrike).toEqual(true);
+
+  })
 
 })
