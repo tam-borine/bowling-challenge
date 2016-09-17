@@ -1,13 +1,15 @@
 'use-strict';
 
 function Frame(){
-  this._bonusFrame = false
-  this._tenthFrame = false
+  this._isBonusFrame = false
+  this._isTenthFrame = false
 }
 
 
 Frame.prototype = {
-  roll: function(){ return"something"}
+  
+  roll: function(roll){ return roll},
+
 
 
 }

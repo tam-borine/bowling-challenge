@@ -1,5 +1,5 @@
 'use-strict';
-
+/*jshint -W117 */
 describe('Game', function() {
   var game;
   var frame;
