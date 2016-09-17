@@ -3,12 +3,18 @@
 function Frame(){
   this._isBonusFrame = false
   this._isTenthFrame = false
+  this._rollsRemaining = 2
+  this._points = 0
 }
 
 
 Frame.prototype = {
-  
-  roll: function(roll){ return roll},
+
+  roll: function(roll){
+    this._rollsRemaining --;
+    var roll = roll || new Roll();
+    return roll.outcome();
+  },
 
 
 

@@ -1,5 +1,5 @@
 'use-strict';
-
+/*jshint -W117 */
 describe('Frame', function(){
   var frame;
   var roll;
@@ -9,10 +9,9 @@ describe('Frame', function(){
     roll = new Roll();
   })
 
-  it('should have a roll method', function(){
-    expect(frame.roll(roll)).toEqual(roll);
+  it('should have a roll method that returns a number of pins hit', function(){
+    expect(frame.roll(roll)).toEqual(jasmine.any(Number));
   })
 
 
 })
-/*jshint -W117 */

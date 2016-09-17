@@ -2,6 +2,7 @@
 
 function Game(){
   this._framesRemaining = 10
+  this._score = 0
 }
 
 Game.prototype = {
@@ -10,6 +11,10 @@ Game.prototype = {
   this._framesRemaining --;
   var frames = frames || new Frame();
   return frames;
-}
+},
+
+  updateScore: function(){
+
+  }
 
 }
