@@ -1,7 +1,15 @@
+'use-strict';
+
 function Game(){
-  this._frames = 10
+  this._framesRemaining = 10
 }
 
 Game.prototype = {
-  
+
+  nextFrame: function(frames) {
+  this._framesRemaining --;
+  var frames = frames || new Frame();
+  return frames;
+}
+
 }
