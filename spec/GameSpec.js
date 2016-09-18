@@ -4,11 +4,13 @@ describe('Game', function() {
   var game;
   var frame;
   var frame2;
+  var roll;
 
   beforeEach(function(){
     game = new Game();
     frame = new Frame();
     frameTwo = new Frame();
+    roll = new Roll();
 
   })
 
@@ -28,8 +30,15 @@ describe('Game', function() {
     expect(game.nextFrame(frame)).not.toBe(frameTwo);
   })
 
+  it('plays the frame', function(){
+    spyOn(roll, "getRandomArbitrary").and.callFake(function(){return 10});
+    game.play(frame, roll);
+    console.log(game._frames)
+    expect(game._frames).toContain(frame);
+  })
+
   it('updates score with points from last frame', function(){
-    
+
   })
 
 

@@ -15,7 +15,6 @@ Frame.prototype = {
     return (this._isAStrike === true || this._rollsRemaining === 0);
   },
 
-
   roll: function(roll){
     this._rollsRemaining --;
     var roll = roll || new Roll();
