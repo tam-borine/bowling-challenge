@@ -34,7 +34,9 @@ describe('Frame', function(){
   })
 
   it('finishes the frame if roll was a strike', function(){
-
+    spyOn(roll, "getRandomArbitrary").and.callFake(function(){return 10});
+    frame.roll(roll);
+    expect(frame.isFinished()).toBe(true);
   })
 
 

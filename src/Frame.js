@@ -2,8 +2,6 @@
 
 function Frame(){
   this.pins = 10
-  this._isBonusFrame = false
-  this._isTenthFrame = false
   this._rollsRemaining = 2
   this._points = 0
   this._isAStrike = false
@@ -12,6 +10,11 @@ function Frame(){
 
 
 Frame.prototype = {
+
+  isFinished: function(){
+    return (this._isAStrike === true || this._rollsRemaining === 0);
+  },
+
 
   roll: function(roll){
     this._rollsRemaining --;

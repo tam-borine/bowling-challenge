@@ -7,10 +7,10 @@ function Game(){
 
 Game.prototype = {
 
-  nextFrame: function(frames) {
+  nextFrame: function(frame) {
   this._framesRemaining --;
-  var frames = frames || new Frame();
-  return frames;
+  var frame = frame || new Frame();
+  return frame;
 },
 
   updateScore: function(){
