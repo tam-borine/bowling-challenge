@@ -12,15 +12,15 @@ describe('Frame', function(){
   })
 
   it('roll method updates points by pins hit', function(){
-    spyOn(roll, "outcome").and.callThrough()
-    var points = frame.roll(roll);
-    expect(roll.outcome).toHaveBeenCalled();
-    expect(frame._points).toEqual(points);
+    var pinsHit = 8
+    spyOn(roll, "outcome").and.callFake(function(){return pinsHit});
+    frame.roll(roll);
+    expect(frame._points).toEqual(pinsHit);
   })
 
 
   it('is a strike if all ten pins are hit', function() {
-    spyOn(roll, "getRandomArbitrary").and.callThrough().and.returnValue(10);
+    spyOn(roll, "getRandomArbitrary").and.callFake(function(){return 10});
     frame.roll(roll);
     expect(frame._isAStrike).toEqual(true);
   })

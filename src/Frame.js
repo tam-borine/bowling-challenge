@@ -16,18 +16,18 @@ Frame.prototype = {
   roll: function(roll){
     this._rollsRemaining --;
     var roll = roll || new Roll();
-    var points = roll.outcome.call(this);
+    var pinsHit = roll.hitPins();
+    var points = roll.outcome.call(this, pinsHit);
     this._points += points;
-    return points
   },
 
   isStrike: function(pinsHit){
-    if ((this.pins -= pinsHit === 0) && this._rollsRemaining === 1)
+    if ((this.pins === 0) && this._rollsRemaining === 1)
        {this._isAStrike = true}
   },
 
   isScore: function(pinsHit){
-    if ((this.pins -= pinsHit === 0) && this._rollsRemaining === 0)
+    if ((this.pins === 0) && this._rollsRemaining === 0)
        {this._isAScore = true}
   }
 
