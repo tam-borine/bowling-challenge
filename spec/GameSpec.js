@@ -56,5 +56,7 @@ describe('Game', function() {
     expect(game._score).toEqual(game._frames[0]._points);
   })
 
+  it('game ends when last frame is spent')
+
 
 })

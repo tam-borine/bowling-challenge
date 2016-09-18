@@ -24,7 +24,7 @@
                                 //   true     : ensure whatever is used is consistent
                                 //   "single" : require single quotes
                                 //   "double" : require double quotes
-    "undef"         : true,     // true: Require all non-global variables to be declared (prevents global leaks)
+    "undef"         : false,     // true: Require all non-global variables to be declared (prevents global leaks)
     "unused"        : false,     // Unused variables:
                                 //   true     : all variables, last function parameter
                                 //   "vars"   : all variables only
@@ -63,7 +63,7 @@
     "shadow"        : false,     // true: Allows re-define variables later in code e.g. `var x=1; x=2;`
     "sub"           : false,     // true: Tolerate using `[]` notation when it can still be expressed in dot notation
     "supernew"      : false,     // true: Tolerate `new function () { ... };` and `new Object;`
-    "validthis"     : false,     // true: Tolerate using this in a non-constructor function
+    "validthis"     : true,     // true: Tolerate using this in a non-constructor function
 
     // Environments
     "browser"       : true,     // Web Browser (window, document, etc)
@@ -72,13 +72,13 @@
     "devel"         : true,     // Development/debugging (alert, confirm, etc)
     "dojo"          : false,    // Dojo Toolkit
     "jasmine"       : true,    // Jasmine
-    "jquery"        : false,    // jQuery
+    "jquery"        : true,    // jQuery
     "mocha"         : true,     // Mocha
     "mootools"      : false,    // MooTools
     "node"          : false,    // Node.js
     "nonstandard"   : false,    // Widely adopted globals (escape, unescape, etc)
     "phantom"       : false,    // PhantomJS
-    "prototypejs"   : false,    // Prototype and Scriptaculous
+    "prototypejs"   : true,    // Prototype and Scriptaculous
     "qunit"         : false,    // QUnit
     "rhino"         : false,    // Rhino
     "shelljs"       : false,    // ShellJS
@@ -88,5 +88,5 @@
     "yui"           : false,    // Yahoo User Interface
 
     // Custom Globals
-    "globals"       : {}        // additional predefined global variables
+    "globals"       : {"Game":true, "jQuery": false, "$":false, "Frame": true, "Roll": true}        // additional predefined global variables
 }
