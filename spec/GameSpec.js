@@ -3,7 +3,7 @@
 describe('Game', function() {
   var game;
   var frame;
-  var frame2;
+  var frameTwo;
   var roll;
 
   beforeEach(function(){
@@ -30,11 +30,11 @@ describe('Game', function() {
     expect(game.nextFrame(frame)).not.toBe(frameTwo);
   })
 
-  it('plays the frame', function(){
-    spyOn(roll, "getRandomArbitrary").and.callFake(function(){return 10});
+  it('plays and schedules frames', function(){
     game.play(frame, roll);
-    console.log(game._frames)
     expect(game._frames).toContain(frame);
+    game.play(frameTwo, roll);
+    expect(game._frames).toContain(frameTwo);
   })
 
   it('updates score with points from last frame', function(){

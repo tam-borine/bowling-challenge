@@ -12,11 +12,17 @@ Game.prototype = {
   this._framesRemaining --;
   var frame = frame || new Frame();
   return frame;
-},
+  },
+
+  lastFrame: function() {
+    return this._frames[this._frames.length - 1];
+  },
 
   play: function(frame, roll){
-    var frame = frame.isFinished() ? this.nextFrame() : frame
-    frame.roll(roll)
+    console.log(this.lastFrame());
+    this.lastFrame || this.isFinished(this.lastFrame()) || this.nextFrame();
+    frame.roll(roll);
+    console.log(frame)
     this._frames.push(frame)
   },
 
