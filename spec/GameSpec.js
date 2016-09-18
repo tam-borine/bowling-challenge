@@ -5,21 +5,14 @@ describe('Game', function() {
   var frame;
   var frameTwo;
   var roll;
-  var roll1;
-  var rollTwo;
-  var roll3;
+  var roll2;
 
   beforeEach(function(){
     game = new Game();
     frame = new Frame();
     frameTwo = new Frame();
     roll = new Roll();
-    roll1 = new Roll();
-    rollTwo = new Roll();
-    roll3 = new Roll();
-
-
-
+    roll2 = new Roll();
   })
 
   it('should have 10 frames at start of game', function(){
@@ -45,13 +38,20 @@ describe('Game', function() {
     expect(game._frames).toContain(frameTwo);
   })
 
-  xit('updates points of frames with bonuses', function(){
-    game.bonusCalc()
+  it('updates points of frames with bonuses', function(){
+    spyOn(roll, "getRandomArbitrary").and.callFake(function(){return 10});
+    game.play(frameTwo, roll);
+    game.play(frame, roll2);
+    game.play(frame, roll2);
+    game.bonusCalc();
+    game.updateScore();
+    var totalPoints = 0
+    game._frames.forEach(function(frame){totalPoints += frame._points});
+    expect(game._score).toEqual(totalPoints);
   })
 
   it('updates score with points from frames', function(){
     game.play(frame, roll);
-    frame._points
     game.updateScore();
     expect(game._score).toEqual(game._frames[0]._points);
   })
