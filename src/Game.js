@@ -19,15 +19,19 @@ Game.prototype = {
   },
 
   play: function(frame, roll){
-    console.log(this.lastFrame());
-    this.lastFrame || this.isFinished(this.lastFrame()) || this.nextFrame();
+    this.lastFrame || frame.isFinished() || this.nextFrame();
     frame.roll(roll);
-    console.log(frame)
     this._frames.push(frame)
   },
 
+  bonusCalc: function(){
+
+  },
+
   updateScore: function(){
-    this._score += frame._points();
+    this._frames.forEach(function(frame){
+      this._score += frame._points;
+    }, this)
   }
 
 }

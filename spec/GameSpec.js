@@ -5,12 +5,20 @@ describe('Game', function() {
   var frame;
   var frameTwo;
   var roll;
+  var roll1;
+  var rollTwo;
+  var roll3;
 
   beforeEach(function(){
     game = new Game();
     frame = new Frame();
     frameTwo = new Frame();
     roll = new Roll();
+    roll1 = new Roll();
+    rollTwo = new Roll();
+    roll3 = new Roll();
+
+
 
   })
 
@@ -37,10 +45,16 @@ describe('Game', function() {
     expect(game._frames).toContain(frameTwo);
   })
 
-  it('updates score with points from last frame', function(){
-
+  xit('updates points of frames with bonuses', function(){
+    game.bonusCalc()
   })
 
+  it('updates score with points from frames', function(){
+    game.play(frame, roll);
+    frame._points
+    game.updateScore();
+    expect(game._score).toEqual(game._frames[0]._points);
+  })
 
 
 })
