@@ -8,6 +8,10 @@ function Game(){
 
 Game.prototype = {
 
+  isOver: function(){
+    return (this._framesRemaining <= 0) ;
+  },
+
   nextFrame: function(frame) {
   this._framesRemaining --;
   var frame = frame || new Frame();
@@ -18,9 +22,10 @@ Game.prototype = {
     return this._frames[this._frames.length - 1];
   },
 
-  play: function(frame, roll){
-    this.lastFrame || frame.isFinished() || this.nextFrame() ;
-    frame.roll(roll);
+  play: function(){
+    var last = this.lastFrame();
+    var frame = last && !last.isFinished() ? this.lastFrame() : this.nextFrame();
+    frame.roll();
     this._frames.push(frame)
   },
 

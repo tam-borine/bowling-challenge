@@ -31,32 +31,27 @@ describe('Game', function() {
     expect(game.nextFrame(frame)).not.toBe(frameTwo);
   })
 
-  it('plays and schedules frames', function(){
-    game.play(frame, roll);
-    expect(game._frames).toContain(frame);
-    game.play(frameTwo, roll);
-    expect(game._frames).toContain(frameTwo);
+  it('plays and updates frames', function(){
+    game.play();
+    expect(game._frames.length).toEqual(1);
   })
 
   it('updates points of frames with bonuses', function(){
-    spyOn(roll, "getRandomArbitrary").and.callFake(function(){return 10});
-    game.play(frameTwo, roll);
-    game.play(frame, roll2);
-    game.play(frame, roll2);
+    // spyOn(roll, "getRandomArbitrary").and.callFake(function(){return 10});
+    // game.play();
+    helperModule.playArgTimes(5,game)
     game.bonusCalc();
     game.updateScore();
     var totalPoints = 0
-    game._frames.forEach(function(frame){totalPoints += frame._points});
-    expect(game._score).toEqual(totalPoints);
+    expect(game._score).toEqual(helperModule.totalPoints(game));
   })
 
-  it('updates score with points from frames', function(){
-    game.play(frame, roll);
-    game.updateScore();
-    expect(game._score).toEqual(game._frames[0]._points);
-  })
 
-  it('game ends when last frame is spent')
+  it('game ends when last frame is spent', function(){
+    helperModule.playArgTimes(30,game);
+    console.log(game._framesRemaining);
+    expect(game.isOver()).toEqual(true);
+  });
 
 
 })
