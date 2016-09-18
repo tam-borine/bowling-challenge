@@ -15,6 +15,7 @@ Game.prototype = {
 },
 
   play: function(frame, roll){
+    var frame = frame.isFinished() ? frame : nextFrame()
     frame.roll(roll)
     this._frames.push(frame)
   },
