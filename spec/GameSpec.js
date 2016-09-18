@@ -28,6 +28,10 @@ describe('Game', function() {
     expect(game.nextFrame(frame)).not.toBe(frameTwo);
   })
 
+  it('updates score with points from last frame', function(){
+    
+  })
+
 
 
 })
