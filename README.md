@@ -1,3 +1,8 @@
+To play the game:
+====
+
+clone this repo and run `open index.html`
+
 
 Bowling Challenge
 =================
