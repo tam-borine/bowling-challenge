@@ -4,6 +4,15 @@
 $(document).ready(function(){
   var game = new Game();
 
+  function loopy() {
+    if (game.isOver()) {
+      $("#bowlButton").hide();
+      $("#playButton").show();
+      alert("Game Over!");
+      game = new Game();
+        }
+     }
+
   function updateInfo(){
     $('#framesRemaining').text("Frames remaining: " + game._framesRemaining);
     $('#gameScore').text("Score: " + game._score);
@@ -11,17 +20,18 @@ $(document).ready(function(){
 
   $("#bowlButton").hide();
 
-  $("#beginButton").click(function(){
+  $("#playButton").click(function(){
       $("#bowlButton").show();
-      $("#beginButton").hide();
+      $("#playButton").hide();
       updateInfo();
   });
 
   $("#bowlButton").click(function(){
-    game.play(game.nextFrame());
-    game.bonusCalc();
-    game.updateScore();
-    updateInfo();
+      game.play();
+      game.bonusCalc();
+      game.updateScore();
+      updateInfo();
+      loopy();
   });
 
 });

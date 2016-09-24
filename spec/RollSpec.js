@@ -9,5 +9,4 @@ describe('Roll', function(){
     roll = new Roll();
   });
 
-
 })

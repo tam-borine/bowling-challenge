@@ -13,7 +13,7 @@ Game.prototype = {
   },
 
   nextFrame: function(frame) {
-  this._framesRemaining --;
+  this._framesRemaining --; //move this?
   var frame = frame || new Frame();
   return frame;
   },
@@ -22,10 +22,11 @@ Game.prototype = {
     return this._frames[this._frames.length - 1];
   },
 
-  play: function(){
+  play: function(hardCodeHit){
     var last = this.lastFrame();
-    var frame = last && !last.isFinished() ? this.lastFrame() : this.nextFrame();
-    frame.roll();
+    var frame = last && !last.isFinished() ? last : this.nextFrame();
+    while (!frame.isFinished()) {
+      frame.roll(hardCodeHit); }
     this._frames.push(frame)
   },
 
