@@ -63,3 +63,18 @@ html, body {
     right: 0;
     top: 0;
 }
+
+#gameStats {
+    color: #fff;
+    display: none;
+    font-size: 14px;
+    margin: 20px 0;
+}
+
+#gameStats .gameReset {
+    color: #fff;
+    margin: 20px 20px 0 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

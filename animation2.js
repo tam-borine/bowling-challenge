@@ -158,11 +158,11 @@ function animate() {
             asteroids.splice(asteroids.indexOf(tmpDeadAsteroid), 1);
         }
 
-        var remaining = asteroids.length - 1; // Remove player from asteroid count
-        uiPinsRemaining.html(remaining);
+        var pinsRemaining = asteroids.length - 1; // Remove player from asteroid count
+        uiPinsRemaining.html(pinsRemaining);
 
-        if (!remaining) {
-            // Winner!
+        if (!pinsRemaining) {
+            // Game over
             playGame = false;
             uiFrameStats.hide();
             uiComplete.show();

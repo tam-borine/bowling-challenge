@@ -4,7 +4,7 @@ To play the game:
 clone this repo and run `open index.html`
 
 
-Bowling Challenge
+Features
 =================
 
 - [x] Games consist of 10 frames
@@ -13,21 +13,16 @@ Bowling Challenge
 - [x] A strike is when all 10 pins are hit on first roll of frame, ending the frame
 - [x] A spare is when all 10 pins are hit by the end of the frame/second roll
 - [x] For every pin hit you get a point
-- [] Bonus points from the next roll are added to a spare's points
-- [] Bonus points from the next two rolls are added to a strike's points
+- [x] Bonus points from the next roll are added to a spare's points
+- [x] Bonus points from the next two rolls are added to a strike's points
 
-## 10th frame
-
-If the player rolls a strike or spare in the 10th frame they can roll the additional balls for the bonus. But they can never roll more than 3 balls in the 10th frame. The additional rolls only count for the bonus not for the regular frame count.
-
-    10, 10, 10 in the 10th frame gives 30 points (10 points for the regular first strike and 20 points for the bonus).
-    1, 9, 10 in the 10th frame gives 20 points (10 points for the regular spare and 10 points for the bonus).
+Tests
+===
 
 
-### Optional Extra
 
-Create a nice interactive animated interface with jQuery.
-
+Notes to Self
+====
 
 ## 10th frame
 
@@ -59,13 +54,6 @@ In code review we'll be hoping to see:
 * The code is elegant: every class has a clear responsibility, methods are short etc.
 
 Reviewers will potentially be using this [code review rubric](docs/review.md).  Note that referring to this rubric in advance may make the challenge somewhat easier.  You should be the judge of how much challenge you want.
-
-CI
---
-
-We are running JSHint on our CI server - save yourself having to wait for a build to happen by linting your code on your machine first. [Here are installations for most popular editors](http://jshint.com/install/). Grab the `.jshintrc` from this repo and have better JS!
-
-If you don't follow the usual Jasmine convention of having your tests in `spec` and your code in `src`, or you've built your code into a little app, CI will probably fail for you as we are doing *sneaky things*&trade; to make your tests run. However, there is a simple fix:
 
 1. Open up your `.travis.yml`
 2. On line 8, you will see where it looks for your code (`'src/**/*.js'`) and your tests (`'spec/**/*.js'`)

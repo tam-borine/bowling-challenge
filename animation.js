@@ -25,13 +25,17 @@ var platformInnerRadius;
 // Game UI
 var ui = $("#gameUI");
 var uiIntro = $("#gameIntro");
-var uiFrameStats = $("#frameStats");
 var uiComplete = $("#gameComplete");
 var uiPlay = $("#gamePlay");
 var uiReset = $(".gameReset");
-var uiPinsRemaining = $("#pinsRemaining");
 var uiRoll = $("#frameRoll");
-var uiFramePoints = $("#framePoints")
+
+var uiFrameStats = $("#frameStats");
+var uiGameStats = $("#gameStats");
+var uiFramePoints = $("#framePoints");
+var uiGamePoints = $("#gamePoints");
+var uiFramesRemaining = $("#framesRemaining");
+var uiPinsRemaining = $("#pinsRemaining");
 
 // Reset player
 function resetPlayer() {
@@ -46,14 +50,15 @@ var midGame = function() {
   uiReset.click(function(e) {
       e.preventDefault();
       uiComplete.hide();
-      startGame();
+      startFrame();  //change to startGame
   });
 }
 // Reset and start the game
-function startGame() {
+function startFrame() {
     // Reset game stats
     uiRoll.html("0");
     uiFrameStats.show();
+    uiGameStats.show();
     midGame();
 
     // Set up initial game settings
@@ -169,11 +174,10 @@ function init() {
       e.preventDefault();
       uiIntro.hide();
       uiComplete.hide();
-      startGame();
+      startFrame();
     })
 
 };
 
 
 init();
-// startGame();
