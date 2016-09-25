@@ -17,25 +17,30 @@
                 <p>This is an awesome game</p>
                 <p><a id="gamePlay" class="button" href="">Play</a></p>
             </div>
-            <div id="gameStats">
 
+            <div id="gameStats">
+              <p>Total points: <span id="gamePoints"></span></p>
+              <!-- need to add above line to interface -->
+              <p>Frames remaining: <span id="framesRemaining"></span></p>
+              <!-- need to add above line to interface -->
             </div>
+
             <p><a class="gameReset" href="">Reset</a></p>
 
             <div id="frameStats">
-              <p>Pins remaining: <span id="pinsRemaining"></span></p>
-              <!-- change to pins? -->
+              <p>Points: <span id="framePoints"></span></p>
+              <!-- need to add above line to interface -->
               <p>Frame Roll: <span id="frameRoll"></span></p>
+              <!-- change above to rollsRemaining ? -->
+              <p>Pins remaining: <span id="pinsRemaining"></span></p>
             </div>
+
             <div id="gameComplete">
                 <h1>you win!</h1>
-                <p>Congratulations, you completed the game in <span class="gameScore"></span> clicks</p>
                 <p><a class="gameReset button" href="">Play again</a></p>
             </div>
         </div>
-        <!-- <canvas id="gameCanvas"> -->
-            <!-- Insert fallback content here -->
-        <!-- </canvas> -->
+
         <canvas id="gameCanvas" width="350" height="600"></canvas>
 
     </div>

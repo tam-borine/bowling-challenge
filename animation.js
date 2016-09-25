@@ -31,6 +31,7 @@ var uiPlay = $("#gamePlay");
 var uiReset = $(".gameReset");
 var uiPinsRemaining = $("#pinsRemaining");
 var uiRoll = $("#frameRoll");
+var uiFramePoints = $("#framePoints")
 
 // Class that defines new asteroids to draw
 var Asteroid = function(x, y, radius, mass, friction) {
