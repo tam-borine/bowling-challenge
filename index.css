@@ -49,14 +49,14 @@ html, body {
     display: none;
 }
 
-#gameStats {
+#frameStats {
     color: #fff;
     display: none;
     font-size: 14px;
     margin: 20px 0;
 }
 
-#gameStats .gameReset {
+#frameStats .gameReset {
     color: #fff;
     margin: 20px 20px 0 0;
     position: absolute;

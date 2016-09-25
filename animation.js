@@ -9,7 +9,7 @@ var canvasHeight = canvas.height = window.innerHeight;
 
 // Game settings
 var playGame;
-var points;
+var roll;
 var asteroids; // Array that holds all the asteroids
 var player;
 var playerSelected;
@@ -25,12 +25,12 @@ var platformInnerRadius;
 // Game UI
 var ui = $("#gameUI");
 var uiIntro = $("#gameIntro");
-var uiStats = $("#gameStats");
+var uiFrameStats = $("#frameStats");
 var uiComplete = $("#gameComplete");
 var uiPlay = $("#gamePlay");
 var uiReset = $(".gameReset");
-var uiRemaining = $("#gameRemaining");
-var uiPoints = $(".framePoints");
+var uiPinsRemaining = $("#pinsRemaining");
+var uiRoll = $("#frameRoll");
 
 // Class that defines new asteroids to draw
 var Asteroid = function(x, y, radius, mass, friction) {
@@ -58,11 +58,11 @@ function resetPlayer() {
 // Reset and start the game
 function startGame() {
     // Reset game stats
-    uiPoints.html("0");
-    uiStats.show();
+    uiRoll.html("0");
+    uiFrameStats.show();
 
     // Set up initial game settings
-    points = 0;
+    roll = 0;
     asteroids = [];
     playGame = false;
     playerSelected = false;
@@ -103,7 +103,7 @@ function startGame() {
       }
     }
 
-    uiRemaining.html(asteroids.length-1); //remove player from Asteroid count
+    uiPinsRemaining.html(asteroids.length-1); //remove player from Asteroid count
 
     // Code from Chapter 5 (Accessing pixel values)
     $(document).on('mousedown', function(e) { //when mouse is held down
@@ -153,7 +153,7 @@ function startGame() {
                     player.vY = -((dY*ratio)*playerVelocityDampener);
                 };
 
-                uiPoints.html(++points);
+                uiRoll.html(++roll);
             };
         };
 
@@ -190,7 +190,7 @@ function startGame() {
 
 // Inititialise the game environment
 function init() {
-    uiStats.hide();
+    uiFrameStats.hide();
     uiComplete.hide();
 
     uiReset.click(function(e) {
@@ -361,12 +361,12 @@ function animate() {
         }
 
         var remaining = asteroids.length - 1; // Remove player from asteroid count
-        uiRemaining.html(remaining);
+        uiPinsRemaining.html(remaining);
 
         if (!remaining) {
             // Winner!
             playGame = false;
-            uiStats.hide();
+            uiFrameStats.hide();
             uiComplete.show();
 
             // Reset event handlers
