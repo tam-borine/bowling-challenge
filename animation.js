@@ -167,6 +167,7 @@ function init() {
 
     uiPlay.click(function(e){
       e.preventDefault();
+      uiIntro.hide();
       uiComplete.hide();
       startGame();
     })
@@ -175,5 +176,4 @@ function init() {
 
 
 init();
-uiIntro.hide();
-startGame();
+// startGame();
