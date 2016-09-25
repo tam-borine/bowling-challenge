@@ -14,6 +14,13 @@ var Asteroid = function(x, y, radius, mass, friction) {
 
     this.player = false;
 };
+// Reset player
+function resetPlayer() {
+    player.x = playerOriginalX;
+    player.y = playerOriginalY;
+    player.vX = 0;
+    player.vY = 0;
+};
 
 var buildAsteroids = function() {
 

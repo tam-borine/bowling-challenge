@@ -8,8 +8,9 @@ var canvasHeight = canvas.height = window.innerHeight;
 
 
 // Game settings
+var game;
+var frame;
 var playGame;
-var roll;
 var asteroids; // Array that holds all the asteroids
 var player;
 var playerSelected;
@@ -28,8 +29,8 @@ var uiIntro = $("#gameIntro");
 var uiComplete = $("#gameComplete");
 var uiPlay = $("#gamePlay");
 var uiReset = $(".gameReset");
-var uiRoll = $("#frameRoll");
-
+var uiRollsRemaining = $("#rollsRemaining");
+// Stats UI
 var uiFrameStats = $("#frameStats");
 var uiGameStats = $("#gameStats");
 var uiFramePoints = $("#framePoints");
@@ -37,49 +38,49 @@ var uiGamePoints = $("#gamePoints");
 var uiFramesRemaining = $("#framesRemaining");
 var uiPinsRemaining = $("#pinsRemaining");
 
-// Reset player
-function resetPlayer() {
-    player.x = playerOriginalX;
-    player.y = playerOriginalY;
-    player.vX = 0;
-    player.vY = 0;
-};
+function startGame(game){
 
-var midGame = function() {
+  game = game || new Game();
+//game var inits
+  asteroids = [];
+  playGame = false;
+  playerSelected = false;
+  playerMaxAbsVelocity = 30;
+  playerVelocityDampener = 0.3;
+  playerOriginalX = canvasWidth/2;
+  playerOriginalY = canvasHeight-150;
+  powerX = -1;
+  powerY = -1;
+  platformX = canvasWidth/2;
+  platformY = 150;
+  platformOuterRadius = 100;
+  platformInnerRadius = 75;
+
+  buildAsteroids();
+
+  startFrame(game.nextFrame);
+  uiFrameStats.show();
+  uiGameStats.show();
+
+  game.play();
 
   uiReset.click(function(e) {
       e.preventDefault();
       uiComplete.hide();
-      startFrame();  //change to startGame
+      startGame();
   });
-}
-// Reset and start the game
-function startFrame() {
-    // Reset game stats
-    uiRoll.html("0");
-    uiFrameStats.show();
-    uiGameStats.show();
-    midGame();
+};
 
-    // Set up initial game settings
+function startFrame(frame) {
+
+    var frame = frame() || new Frame();
+    alert(frame)
+    // frame var inits
+    frame.pins = asteroids.length-1; //remove player from Asteroid count
     roll = 0;
-    asteroids = [];
-    playGame = false;
-    playerSelected = false;
-    playerMaxAbsVelocity = 30;
-    playerVelocityDampener = 0.3;
-    playerOriginalX = canvasWidth/2;
-    playerOriginalY = canvasHeight-150;
-    powerX = -1;
-    powerY = -1;
-    platformX = canvasWidth/2;
-    platformY = 150;
-    platformOuterRadius = 100;
-    platformInnerRadius = 75;
 
-    buildAsteroids();
-
-    uiPinsRemaining.html(asteroids.length-1); //remove player from Asteroid count
+    uiRollsRemaining.html(frame._rollsRemaining);
+    uiPinsRemaining.html(frame.pins);  //show pins remaining
 
     // Code from Chapter 5 (Accessing pixel values)
     $(document).on('mousedown', function(e) { //when mouse is held down
@@ -93,7 +94,7 @@ function startFrame() {
             if (player) { //auto play
                 if (!playGame) {
                     playGame = true;
-                    animate();
+                    animate(); //auto animate
                 };
 
                 var dX = player.x-canvasX; //get difference in position between cursor and player
@@ -101,8 +102,8 @@ function startFrame() {
                 var distance = Math.sqrt( (dX*dX) + (dY*dY) );
                 var padding = 0;
 
-                if (distance < player.radius+padding) {   //WHAT IS HAPPENING HERE???
-                    powerX = canvasX;
+                if (distance < player.radius+padding) {
+                    powerX = canvasX; //WHAT IS HAPPENING HERE???
                     powerY = canvasY;
                     playerSelected = true;
                 };
@@ -118,7 +119,7 @@ function startFrame() {
             if (player) {
                 var dX = canvasX-player.x;
                 var dY = canvasY-player.y;
-                var distance = Math.sqrt((dX*dX)+(dY*dY)); //a
+                var distance = Math.sqrt((dX*dX)+(dY*dY));
 
                 if (distance*playerVelocityDampener < playerMaxAbsVelocity) {
                     player.vX = -(dX*playerVelocityDampener);
@@ -129,12 +130,15 @@ function startFrame() {
                     player.vY = -((dY*ratio)*playerVelocityDampener);
                 };
 
-                uiRoll.html(++roll);
+                uiRollsRemaining.html(frame._rollsRemaining); //change to rolls remining property of Frame
+                uiGamePoints.html(++game._score);
+                uiFramePoints.html(++frame._points);
+
             };
         };
 
         playerSelected = false;
-        powerX = -1;
+        powerX = -1;  //reset settings
         powerY = -1;
     });
 
@@ -162,6 +166,8 @@ function startFrame() {
 
     // Start the animation loop
     animate();
+
+
 };
 
 // Inititialise the game environment
@@ -174,8 +180,10 @@ function init() {
       e.preventDefault();
       uiIntro.hide();
       uiComplete.hide();
-      startFrame();
+      startGame();
+
     })
+
 
 };
 
