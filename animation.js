@@ -9,7 +9,7 @@ var canvasHeight = canvas.height = window.innerHeight;
 
 // Game settings
 var playGame;
-var score;
+var points;
 var asteroids; // Array that holds all the asteroids
 var player;
 var playerSelected;
@@ -30,7 +30,7 @@ var uiComplete = $("#gameComplete");
 var uiPlay = $("#gamePlay");
 var uiReset = $(".gameReset");
 var uiRemaining = $("#gameRemaining");
-var uiScore = $(".gameScore");
+var uiPoints = $(".framePoints");
 
 // Class that defines new asteroids to draw
 var Asteroid = function(x, y, radius, mass, friction) {
@@ -58,11 +58,11 @@ function resetPlayer() {
 // Reset and start the game
 function startGame() {
     // Reset game stats
-    uiScore.html("0");
+    uiPoints.html("0");
     uiStats.show();
 
     // Set up initial game settings
-    score = 0;
+    points = 0;
     asteroids = [];
     playGame = false;
     playerSelected = false;
@@ -103,7 +103,7 @@ function startGame() {
       }
     }
 
-    uiRemaining.html(asteroids.length-1);
+    uiRemaining.html(asteroids.length-1); //remove player from Asteroid count
 
     // Code from Chapter 5 (Accessing pixel values)
     $(document).on('mousedown', function(e) { //when mouse is held down
@@ -153,7 +153,7 @@ function startGame() {
                     player.vY = -((dY*ratio)*playerVelocityDampener);
                 };
 
-                uiScore.html(++score);
+                uiPoints.html(++points);
             };
         };
 
