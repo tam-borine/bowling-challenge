@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-
+<head>
+    <title></title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script
+    			  src="https://code.jquery.com/jquery-3.1.1.js"
+    			  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    			  crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="game">
+        <div id="gameUI">
+            <div id="gameIntro">
+                <h1>Space bowling</h1>
+                <p>This is an awesome game</p>
+                <p><a id="gamePlay" class="button" href="">Play</a></p>
+            </div>
+            <div id="gameStats">
+                <p>Asteroids:<span id="gameRemaining"></span></p>
+                <p>Clicks:<span id="gameScore"></span></p>
+                <p><a class="gameReset" href="">Reset</a></p>
+            </div>
+            <div id="gameComplete">
+                <h1>you win!</h1>
+                <p>Congratulations, you completed the game in <span class="gameScore"></span> clicks</p>
+                <p><a class="gameReset button" href="">Play again</a></p>
+            </div>
+        </div>
+        <!-- <canvas id="gameCanvas"> -->
+            <!-- Insert fallback content here -->
+        <!-- </canvas> -->
+        <canvas id="gameCanvas" width="350" height="600"></canvas>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </div>
 
-    <script src="src/Interface.js"></script>
     <script src="src/Game.js"></script>
     <script src="src/Frame.js"></script>
     <script src="src/Roll.js"></script>
+    <script type="text/javascript" src="animation.js"></script>
 
-    <title>Ready to Bowl?</title>
-  </head>
-
-  <body>
-    <text id="framesRemaining"></text>
-
-    <text id="gameScore"></text>
-  <button id="playButton">Play</button>
-  <button id="bowlButton">Bowl</button>
-
-
-
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-
-  </body>
+</body>
 </html>
