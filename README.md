@@ -2,6 +2,7 @@ To play the game:
 ====
 
 clone this repo and run `open index.html`
+[Demo](https://tam-borine.github.io/bowling-challenge/)
 
 
 Features
