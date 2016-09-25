@@ -161,10 +161,11 @@ function animate() {
         var framesRemaining = game._framesRemaining // Remove player from asteroid count
         uiFramesRemaining.html(framesRemaining);
 
-        if (!framesRemaining) {
+        if (framesRemaining <= 0) {
             // Game over
             playGame = false;
             uiFrameStats.hide();
+            alert("game over!!")
             //some message about your score
             uiComplete.show();
 

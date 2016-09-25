@@ -61,6 +61,8 @@ function startGame(game){
   startFrame(game.nextFrame);
   uiFrameStats.show();
   uiGameStats.show();
+  uiFramesRemaining.html(game._framesRemaining);
+  uiGamePoints.html(game._score);
 
   game.play();
 
@@ -74,11 +76,10 @@ function startGame(game){
 function startFrame(frame) {
 
     var frame = frame() || new Frame();
-    alert(frame)
     // frame var inits
     frame.pins = asteroids.length-1; //remove player from Asteroid count
-    roll = 0;
 
+    uiFramePoints.html(frame._points);
     uiRollsRemaining.html(frame._rollsRemaining);
     uiPinsRemaining.html(frame.pins);  //show pins remaining
 
@@ -131,8 +132,7 @@ function startFrame(frame) {
                 };
 
                 uiRollsRemaining.html(frame._rollsRemaining); //change to rolls remining property of Frame
-                uiGamePoints.html(++game._score);
-                uiFramePoints.html(++frame._points);
+
 
             };
         };
