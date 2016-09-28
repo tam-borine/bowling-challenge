@@ -35,8 +35,6 @@ var buildAsteroids = function() {
       asteroids.push(player);
 
       // Set up other asteroids
-      //var outerRing = 8; // Asteroids around outer ring
-      //var ringCount = 3; // Number of rings
       var nPinRows = 4;
       var distancePins = 40;
       for (var pinRow = 0; pinRow < nPinRows; ++pinRow) {

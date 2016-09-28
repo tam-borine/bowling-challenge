@@ -25,6 +25,7 @@ Game.prototype = {
   play: function(hardCodeHit){
     var last = this.lastFrame();
     var frame = last && !last.isFinished() ? last : this.nextFrame();
+    // startFrame(frame);
     while (!frame.isFinished()) {
       frame.roll(hardCodeHit); }
     this._frames.push(frame)

@@ -1,6 +1,6 @@
 'use-strict';
 function Frame(){
-  this.pins = 10
+  this.pins = asteroids.length-1
   this._rollsRemaining = 2
   this._points = 0
   this._isAStrike = false
@@ -15,10 +15,6 @@ Frame.prototype = {
 
   roll: function(pinsHit, roll){//pinsHit to hardcode outcome
     this._rollsRemaining --;
-    var roll = roll || new Roll();
-    var pinsHit = pinsHit || roll.hitRand(0,this.pins);
-    var points = roll.outcome.call(this, pinsHit);
-    this._points += points;
     this.isStrike(pinsHit);
     this.isSpare(pinsHit);
   },

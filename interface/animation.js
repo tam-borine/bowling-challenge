@@ -3,13 +3,6 @@ function animate() {
     // Clear
     context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    // Draw platform
-    context.fillStyle = "black";
-    context.beginPath();
-    context.arc(platformX, platformY, platformOuterRadius, 0, Math.PI*2, true);
-    context.closePath();
-    context.fill();
-
     // Draw player power line
     if (playerSelected) {
         context.strokeStyle = "gray";
@@ -24,7 +17,6 @@ function animate() {
     // player color
     context.fillStyle = "white";
 
-
     // Loop through every asteroid
     var deadAsteroids = [];
     var asteroidsLength = asteroids.length;
@@ -38,7 +30,8 @@ function animate() {
             var dY = tmpAsteroidB.y - tmpAsteroid.y;
             var distance = Math.sqrt( (dX*dX) + (dY*dY) );
 
-            if ((distance < tmpAsteroid.radius + tmpAsteroidB.radius)) { //collision def
+            //collision def...
+            if ((distance < tmpAsteroid.radius + tmpAsteroidB.radius)) {
               if (tmpAsteroid !== player) {
                   tmpAsteroid.dying = true;
               };
@@ -46,7 +39,7 @@ function animate() {
                  tmpAsteroidB.dying = true;
               };
 
-
+                //elastic collisions...
                 var angle = Math.atan2(dY, dX);
                 var sine = Math.sin(angle);
                 var cosine = Math.cos(angle);
@@ -108,11 +101,8 @@ function animate() {
             tmpAsteroid.vY = 0;
         }
 
-        // Platform checks: is a non-player asteroid outside the platform
+        // pinsHit checks
         if (!tmpAsteroid.player) {
-            //var dXp = tmpAsteroid.x - platformX; //old code from other game
-            //var dYp = tmpAsteroid.y - platformY;
-            //var distanceP = Math.sqrt( (dXp*dXp) + (dYp*dYp) );
             if (tmpAsteroid.dying) {
                 // Kill asteroid
                 if (tmpAsteroid.radius > 0 && tmpAsteroid !== player) {
@@ -166,7 +156,7 @@ function animate() {
             playGame = false;
             uiFrameStats.hide();
             alert("game over!!")
-            //some message about your score
+            //some message about your score can go here
             uiComplete.show();
 
             // Reset event handlers

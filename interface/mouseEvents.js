@@ -1,88 +1,5 @@
-var game = $("#game");
-var canvas = document.getElementById("gameCanvas");
-var context = canvas.getContext("2d");
-
-// Canvas dimensions
-var canvasWidth = canvas.width = window.innerWidth;
-var canvasHeight = canvas.height = window.innerHeight;
-
-
-// Game settings
-var game;
-var frame;
-var playGame;
-var asteroids; // Array that holds all the asteroids
-var player;
-var playerSelected;
-var playerMaxAbsVelocity;
-var playerVelocityDampener;
-var powerX;
-var powerY;
-var platformX;
-var platformY;
-var platformOuterRadius;
-var platformInnerRadius;
-
-// Game UI
-var ui = $("#gameUI");
-var uiIntro = $("#gameIntro");
-var uiComplete = $("#gameComplete");
-var uiPlay = $("#gamePlay");
-var uiReset = $(".gameReset");
-var uiRollsRemaining = $("#rollsRemaining");
-// Stats UI
-var uiFrameStats = $("#frameStats");
-var uiGameStats = $("#gameStats");
-var uiFramePoints = $("#framePoints");
-var uiGamePoints = $("#gamePoints");
-var uiFramesRemaining = $("#framesRemaining");
-var uiPinsRemaining = $("#pinsRemaining");
-
-function startGame(game){
-
-  game = game || new Game();
-//game var inits
-  asteroids = [];
-  playGame = false;
-  playerSelected = false;
-  playerMaxAbsVelocity = 30;
-  playerVelocityDampener = 0.3;
-  playerOriginalX = canvasWidth/2;
-  playerOriginalY = canvasHeight-150;
-  powerX = -1;
-  powerY = -1;
-  platformX = canvasWidth/2;
-  platformY = 150;
-  platformOuterRadius = 100;
-  platformInnerRadius = 75;
-
-  buildAsteroids();
-
-  startFrame(game.nextFrame);
-  uiFrameStats.show();
-  uiGameStats.show();
-  uiFramesRemaining.html(game._framesRemaining);
-  uiGamePoints.html(game._score);
-
-  game.play();
-
-  uiReset.click(function(e) {
-      e.preventDefault();
-      uiComplete.hide();
-      startGame();
-  });
-};
-
-function startFrame(frame) {
-
-    var frame = frame() || new Frame();
-    // frame var inits
-    frame.pins = asteroids.length-1; //remove player from Asteroid count
-
-    uiFramePoints.html(frame._points);
-    uiRollsRemaining.html(frame._rollsRemaining);
-    uiPinsRemaining.html(frame.pins);  //show pins remaining
-
+//includes mouseEvents and listenOnResetButton
+function mouseEvents() {
     // Code from Chapter 5 (Accessing pixel values)
     $(document).on('mousedown', function(e) { //when mouse is held down
         e.preventDefault();
@@ -131,7 +48,8 @@ function startFrame(frame) {
                     player.vY = -((dY*ratio)*playerVelocityDampener);
                 };
 
-                uiRollsRemaining.html(frame._rollsRemaining); //change to rolls remining property of Frame
+                // frame._rollsRemaining--
+                // uiRollsRemaining.html(frame._rollsRemaining); //change to rolls remining property of Frame
 
 
             };
@@ -164,28 +82,13 @@ function startFrame(frame) {
         }
     });
 
-    // Start the animation loop
-    animate();
+  } //mouseEvents function ends here
 
 
-};
-
-// Inititialise the game environment
-function init() {
-    uiFrameStats.hide();
-    uiComplete.hide();
-    uiIntro.show();
-
-    uiPlay.click(function(e){
-      e.preventDefault();
-      uiIntro.hide();
-      uiComplete.hide();
-      startGame();
-
-    })
-
-
-};
-
-
-init();
+  function listenOnResetButton(){
+    uiReset.click(function(e) {
+        e.preventDefault();
+        uiComplete.hide();
+        loadGame();
+    });
+  }
